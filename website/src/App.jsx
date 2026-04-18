@@ -12,7 +12,7 @@ import OrderSuccess from './pages/OrderSuccess'
 
 export const CartContext = createContext()
 export const ThemeContext = createContext()
-export const API_URL = 'http://localhost:3001'
+export const API_URL = import.meta.env.VITE_API_URL || 'https://halalbodega.onrender.com'
 
 function App() {
   const [cart, setCart] = useState(() => {

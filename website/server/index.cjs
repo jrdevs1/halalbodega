@@ -40,7 +40,11 @@ const loginLimiter = rateLimit({
 });
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: [
+    process.env.FRONTEND_URL,
+    'https://halalbodega.vercel.app',
+    'http://localhost:5173'
+  ].filter(Boolean),
   credentials: true
 }));
 
@@ -408,6 +412,6 @@ app.put('/api/admin/menu/:id', authenticateAdmin, (req, res) => {
 // ===== Start Server =====
 app.listen(PORT, () => {
   console.log(`\n🐑 The Halal Bodega API running on port ${PORT}`);
-  console.log(`   Health: http://localhost:${PORT}/api/health`);
-  console.log(`   Menu:   http://localhost:${PORT}/api/menu\n`);
+  console.log(`   Production: https://halalbodega.onrender.com`);
+  console.log(`   Health:     https://halalbodega.onrender.com/api/health\n`);
 });
