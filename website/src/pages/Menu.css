@@ -1,0 +1,123 @@
+.menu-page {
+  min-height: 100vh;
+}
+
+/* ===== Categories ===== */
+.menu-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.category-tag {
+  padding: var(--space-sm) var(--space-xl);
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.category-tag.active {
+  background: var(--color-gold);
+  color: var(--color-text-inverse);
+  border-color: var(--color-gold);
+}
+
+/* ===== Grid ===== */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-2xl);
+}
+
+.menu-card {
+  background: var(--bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border-strong);
+}
+
+.menu-card__image-container {
+  aspect-ratio: 1;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+  overflow: hidden;
+}
+
+.menu-card__img {
+  width: 90%;
+  transition: transform var(--transition-slow);
+}
+
+.menu-card:hover .menu-card__img {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.menu-card__details {
+  padding: var(--space-xl);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-sm);
+}
+
+.menu-card__details .price {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-gold);
+}
+
+.menu-card__actions {
+  margin-top: auto;
+  padding-top: var(--space-lg);
+}
+
+.btn-success {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: #fff;
+}
+
+/* ===== Skeleton ===== */
+.menu-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-2xl);
+}
+
+.skeleton-card {
+  height: 400px;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@media (max-width: 640px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}
