@@ -239,12 +239,14 @@ app.post('/api/checkout', async (req, res) => {
       quantity: 1,
     });
 
+    const frontendUrl = process.env.FRONTEND_URL || 'https://halalbodegamain.vercel.app';
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `${process.env.FRONTEND_URL}/order-success?orderId=${orderId}`,
-      cancel_url: `${process.env.FRONTEND_URL}/order?cancelled=true`,
+      success_url: `${frontendUrl}/order-success?orderId=${orderId}`,
+      cancel_url: `${frontendUrl}/order?cancelled=true`,
       metadata: { orderId },
     });
 
@@ -252,8 +254,11 @@ app.post('/api/checkout', async (req, res) => {
 
     res.json({ url: session.url });
   } catch (error) {
-    console.error('Stripe checkout error:', error);
-    res.status(500).json({ error: 'Failed to create checkout session' });
+    console.error('❌ Stripe checkout error:', error.message);
+    res.status(500).json({ 
+      error: 'Failed to create checkout session', 
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined 
+    });
   }
 });
 
