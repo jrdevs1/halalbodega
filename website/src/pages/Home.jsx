@@ -223,9 +223,9 @@ export default function Home() {
       })
       .catch(() => {
         setFeatured([
-          { id: '1', name: 'The OG Smash', description: 'Hand-smashed halal beef with melted cheese and our signature bodega sauce', price: 12.99, image: '/burger.png', category: 'burgers' },
-          { id: '2', name: 'Smash Loaded Fries', description: 'Golden fries loaded with smashed beef, cheese, and all the sauces', price: 14.99, image: '/fries.png', category: 'fries' },
-          { id: '3', name: 'Salaam Cola', description: 'Premium halal-certified cola — ice cold and refreshing', price: 3.49, image: '/drink.png', category: 'drinks' },
+          { id: 'b3ba35a9-fcca-4bf7-ba50-297758191163', name: 'The OG Smash', description: 'Hand-smashed halal beef with melted cheese and our signature bodega sauce', price: 12.99, image: '/burger.png', category: 'burgers' },
+          { id: '1c9fdd7c-15c5-46cc-93bd-3855457c6a65', name: 'Smash Loaded Fries', description: 'Golden fries loaded with smashed beef, cheese, and all the sauces', price: 14.99, image: '/fries.png', category: 'fries' },
+          { id: '4a1db37f-140c-49e7-a2b4-84a82316aeb9', name: 'Salaam Cola', description: 'Premium halal-certified cola — ice cold and refreshing', price: 3.49, image: '/drink.png', category: 'drinks' },
         ])
       })
   }, [])
