@@ -42,11 +42,13 @@ const loginLimiter = rateLimit({
 
 app.use(cors({
   origin: [
-    process.env.FRONTEND_URL,
+    'https://halal-bodega-three.vercel.app',
     'https://halalbodega.vercel.app',
+    'https://halalbodegamain.vercel.app',
     'http://localhost:5173'
-  ].filter(Boolean),
-  credentials: true
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 
 // Webhook needs raw body, must be before express.json()
