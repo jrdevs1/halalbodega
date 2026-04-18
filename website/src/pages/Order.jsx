@@ -51,31 +51,29 @@ export default function Order() {
       setOrderResult(order)
 
       // Try Stripe checkout
-      try {
-        const checkoutRes = await fetch(`${API_URL}/api/checkout`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ orderId: order.id })
-        })
+      const checkoutRes = await fetch(`${API_URL}/api/checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId: order.id })
+      })
 
-        if (checkoutRes.ok) {
-          const { url } = await checkoutRes.json()
-          if (url) {
-            clearCart()
-            window.location.href = url
-            return
-          }
-        }
-      } catch (e) {
-        console.error('Stripe checkout bypass fallback initiated');
-        // Stripe not configured — show confirmation
+      if (!checkoutRes.ok) {
+        const errorData = await checkoutRes.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Payment initialization failed. Please try again.');
       }
 
-      clearCart()
-      setStep('confirm')
+      const { url } = await checkoutRes.json()
+      if (url) {
+        clearCart()
+        window.location.href = url
+        return
+      }
+
+      // If no URL returned but res was OK (should not happen with our backend)
+      throw new Error('Could not initiate payment session.');
     } catch (error) {
-      console.error('Order error:', error)
-      setErrors({ submit: error.message || 'Failed to place order. Please try again.' })
+      console.error('Order/Payment error:', error)
+      setErrors({ submit: error.message || 'Failed to process order. Please check your connection.' })
     } finally {
       setLoading(false)
     }
