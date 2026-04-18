@@ -15,6 +15,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const db = require('./db.cjs');
 
 const app = express();
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || 'halalbodega_dev_secret';
 
