@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect, createContext } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -68,6 +69,7 @@ function App() {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, cartTotal, cartCount }}>
         <div className="app">
+          <Analytics />
           <Routes>
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<Admin />} />
